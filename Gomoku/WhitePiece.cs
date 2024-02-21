@@ -10,7 +10,8 @@ namespace Gomoku
     {
         public WhitePiece(int x, int y) : base(x, y)
         {
-            this.Image = Gomoku.Properties.Resources.white;
+            this.Image = Gomoku.Properties.Resources.white;  //設置圖片為白棋
+
 
         }
     }

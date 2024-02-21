@@ -10,7 +10,7 @@ namespace Gomoku
     {
         public BlackPiece(int x, int y) : base(x, y) 
         {
-            this.Image = Gomoku.Properties.Resources.black;
+            this.Image = Gomoku.Properties.Resources.black;  //設置圖片為黑棋
 
         }
     }

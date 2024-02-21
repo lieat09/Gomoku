@@ -1,18 +1,34 @@
+using System.Drawing.Text;
+
 namespace Gomoku
 {
     public partial class Form1 : Form
     {
+
+        private bool isBlack = true; //用來判斷誰的回合
         public Form1()
         {
-            InitializeComponent();
-
-            this.Controls.Add(new BlackPiece(10, 20));
-            this.Controls.Add(new WhitePiece(80, 20));
+            InitializeComponent();      
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void Form1_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (isBlack)
+            {
+                this.Controls.Add(new BlackPiece(e.X, e.Y)); //左鍵按下後放置黑棋
+                isBlack = false;
+            }
+            else
+            {
+                this.Controls.Add(new WhitePiece(e.X, e.Y)); //放置白棋
+                isBlack = true;
+            }
+            
         }
     }
 }
