@@ -40,6 +40,7 @@
             Text = "Gomoku";
             Load += Form1_Load;
             MouseDown += Form1_MouseDown;
+            MouseMove += Form1_MouseMove;
             ResumeLayout(false);
         }
 
