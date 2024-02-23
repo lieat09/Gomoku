@@ -18,5 +18,7 @@ namespace Gomoku
             this.Size = new Size(IMAGE_WIDTH, IMAGE_WIDTH);  //設置棋子的大小
             
         }
+        
+        public abstract PieceType GetPieceType();
     }
 }

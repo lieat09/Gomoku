@@ -9,13 +9,30 @@ namespace Gomoku
 {
     internal class Board
     {
+        private static readonly int NODE_COUNT = 9; //棋盤格數
+
         private static readonly Point NO_MATCH_NODE = new Point(-1, -1); //表示沒有結點
+
 
         private static readonly int OFFSET = 75; //棋盤邊緣到內部的距離
         private static readonly int NODE_RADIUS = 10; //節點半徑
         private static readonly int NODE_DISTANCE = 75; //節點之間的距離
 
-        private Piece[,] pieces = new Piece[9, 9]; 
+        private Piece[,] pieces = new Piece[NODE_COUNT, NODE_COUNT]; 
+
+        public PieceType GetPieceType(int nodeIdX, int nodeIdY)
+        {
+            if (pieces[nodeIdX, nodeIdY] == null)
+            {
+                return PieceType.NONE;
+            }
+            else
+            {
+                return pieces[nodeIdX, nodeIdY].GetPieceType();
+
+            }
+        }
+
         public bool CanBePalced(int x, int y)  //判斷能不能放棋子
         {
             // 找出最近的節點(Node)
@@ -80,13 +97,13 @@ namespace Gomoku
         {
             //(x - offset) % distance = quotient 利用計算得到的商數判斷左邊節點的位置、餘數判斷有無接近節點的半徑Node_R
             int nodeIdX = findTheClosestNode(x);
-            if (nodeIdX == -1)
+            if (nodeIdX == -1 || nodeIdX >= NODE_COUNT)
             {
                 return NO_MATCH_NODE;
             }
 
             int nodeIdY = findTheClosestNode(y);
-            if (nodeIdY == -1) 
+            if (nodeIdY == -1 || nodeIdY >= NODE_COUNT) 
             {
                 return NO_MATCH_NODE;
             }
@@ -101,10 +118,7 @@ namespace Gomoku
             {
                 return -1;
             }
-            else if (pos > OFFSET + NODE_DISTANCE * 8)
-            {
-                return -1;
-            }
+        
             pos -= OFFSET;
             int quotient = pos / NODE_DISTANCE; //商數
             int remainder = pos % NODE_DISTANCE;  //餘數

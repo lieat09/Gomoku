@@ -13,5 +13,9 @@ namespace Gomoku
             this.Image = Gomoku.Properties.Resources.black;  //設置圖片為黑棋
 
         }
+        public override PieceType GetPieceType()
+        {
+            return PieceType.BLACK;
+        }
     }
 }
